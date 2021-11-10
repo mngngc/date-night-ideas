@@ -8,3 +8,18 @@
 - [x] Update road map
 
 ## Sprint 2
+- [] Begin coding
+- [] Make updates and add commit messages
+- [] Commit 6 code changes
+- [] Track progress in roadmap
+
+## Sprint 3
+- [] Continue coding, testing, and refining
+- [] Test code
+- [] Create PowerPoint slide for project
+- [] Upload PPT
+
+## Final
+- [] Prepare presentation
+- [] Record Presentation
+- [] Upload Presentation
