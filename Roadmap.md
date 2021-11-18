@@ -8,7 +8,7 @@
 - [x] Update road map
 
 ## Sprint 2
-- [ ] Begin coding
+- [x] Begin coding
 - [ ] Make updates and add commit messages
 - [ ] Commit 6 code changes
 - [ ] Track progress in roadmap
