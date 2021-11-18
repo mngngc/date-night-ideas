@@ -9,6 +9,9 @@
 
 ## Sprint 2
 - [x] Begin coding
+- [x] Add restaurants.csv
+- [x] Add bars.csv
+- [ ] Add adventures.csv
 - [ ] Make updates and add commit messages
 - [ ] Commit 6 code changes
 - [ ] Track progress in roadmap
