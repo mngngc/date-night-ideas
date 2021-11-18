@@ -1,5 +1,6 @@
 import sys
 import PySimpleGUI as sg
+import csv
 
 # defines main welcome screen
 def welcome():
@@ -58,9 +59,17 @@ def main():
 
 # defines response dinner
 def dinner():
+    with open("restaurants.csv") as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+
+        for row in csv_reader:
+            result_string = "{name} phone number {number} cost {cost}"
+            result_string = result_string.format(name=row[0], number=row[1], cost=row[2])
+
     layout = [
         [sg.Text("Dinner!")],
-        [sg.Button("OK")]
+        [sg.Text(result_string)]
     ]
 
     # create the window
@@ -69,8 +78,7 @@ def dinner():
     while True:
         event, values = window.read()
         # End program if user closes window or
-        # presses OK
-        if event == "OK" or sg.WIN_CLOSED:
+        if event == sg.WIN_CLOSED:
             break
     window.close()
 
