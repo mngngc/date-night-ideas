@@ -11,13 +11,15 @@
 - [x] Begin coding
 - [x] Add restaurants.csv
 - [x] Add bars.csv
-- [ ] Add adventures.csv
-- [ ] Make updates and add commit messages
-- [ ] Commit 6 code changes
-- [ ] Track progress in roadmap
+- [x] Add adventures.csv
+- [x] Make updates and add commit messages
+- [x] Commit 6 code changes
+- [x] Track progress in roadmap
 
 ## Sprint 3
 - [ ] Continue coding, testing, and refining
+- [ ] Have each option choose a random line in CSV file
+- [ ] Get "Surprise Me!" working properly
 - [ ] Test code
 - [ ] Create PowerPoint slide for project
 - [ ] Upload PPT
