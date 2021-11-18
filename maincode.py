@@ -1,6 +1,7 @@
 import sys
 import PySimpleGUI as sg
 import csv
+import random
 
 # defines main welcome screen
 def welcome():
@@ -61,11 +62,15 @@ def main():
 def dinner():
     with open("restaurants.csv") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
-
-        for row in csv_reader:
-            result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
-            result_string = result_string.format(name=row[0], number=row[1], cost=row[2])
+        for index, row in enumerate(csv_reader):
+            if index == 0:
+                chosen_row = row
+            else:
+                r = random.randint(0, index)
+                if r == 0:
+                    chosen_row = row
+        result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
+        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
 
     layout = [
         [sg.Text("Dinner!")],
@@ -86,12 +91,16 @@ def dinner():
 def drinks():
     with open("bars.csv") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
-
-        for row in csv_reader:
-            result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
-            result_string = result_string.format(name=row[0], number=row[1], cost=row[2])
-
+        for index, row in enumerate(csv_reader):
+            if index == 0:
+                chosen_row = row
+            else:
+                r = random.randint(0, index)
+                if r == 0:
+                    chosen_row = row
+        result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
+        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
+        
     layout = [
         [sg.Text("Drinks!")],
         [sg.Text(result_string)]
@@ -112,11 +121,15 @@ def drinks():
 def adventure():
     with open("adventures.csv") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
-
-        for row in csv_reader:
-            result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
-            result_string = result_string.format(name=row[0], number=row[1], cost=row[2])
+        for index, row in enumerate(csv_reader):
+            if index == 0:
+                chosen_row = row
+            else:
+                r = random.randint(0, index)
+                if r == 0:
+                    chosen_row = row
+        result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
+        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
 
     layout = [
         [sg.Text("Adventure!")],
