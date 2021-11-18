@@ -29,7 +29,7 @@ def welcome():
 def main():
     layout = [
         [sg.Text("Hello! What are you looking to do this evening?", font=("Arial", 15))],
-        [sg.Button("Get Food"), sg.Button("See a Movie")],
+        [sg.Button("Get Food"), sg.Button("Have a Drink")],
         [sg.Button("Go On An Adventure"), sg.Button("Surprise Me!")]
     ]
 
@@ -45,9 +45,9 @@ def main():
         elif event == "Get Food":
             window.close()
             dinner()
-        elif event == "See a Movie":
+        elif event == "Have a Drink":
             window.close()
-            movie()
+            drinks()
         elif event == "Go On An Adventure":
             window.close()
             adventure()
@@ -83,10 +83,18 @@ def dinner():
     window.close()
 
 # defines response movie
-def movie():
+def drinks():
+    with open("bars.csv") as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+
+        for row in csv_reader:
+            result_string = "{name} phone number {number} cost {cost}"
+            result_string = result_string.format(name=row[0], number=row[1], cost=row[2])
+
     layout = [
-        [sg.Text("Movie!")],
-        [sg.Button("OK")]
+        [sg.Text("Drinks!")],
+        [sg.Text(result_string)]
     ]
 
     # create the window
@@ -96,7 +104,7 @@ def movie():
         event, values = window.read()
         # End program if user closes window or
         # presses OK
-        if event == "OK" or sg.WIN_CLOSED:
+        if event == sg.WIN_CLOSED:
             break
     window.close()
 
