@@ -29,8 +29,8 @@ def welcome():
 def main():
     layout = [
         [sg.Text("Hello! What are you looking to do this evening?", font=("Arial", 15))],
-        [sg.Button("Get Food"), sg.Button("Have a Drink")],
-        [sg.Button("Go On An Adventure"), sg.Button("Surprise Me!")]
+        [sg.Button("Get Food!"), sg.Button("Have a Drink!")],
+        [sg.Button("Go On An Adventure!"), sg.Button("Surprise Me!")]
     ]
 
     # create the window
@@ -42,13 +42,13 @@ def main():
         # move different response function 
         if event == sg.WIN_CLOSED:
              break
-        elif event == "Get Food":
+        elif event == "Get Food!":
             window.close()
             dinner()
-        elif event == "Have a Drink":
+        elif event == "Have a Drink!":
             window.close()
             drinks()
-        elif event == "Go On An Adventure":
+        elif event == "Go On An Adventure!":
             window.close()
             adventure()
         elif event == "Surprise Me!":
@@ -64,7 +64,7 @@ def dinner():
         line_count = 0
 
         for row in csv_reader:
-            result_string = "{name} phone number {number} cost {cost}"
+            result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
             result_string = result_string.format(name=row[0], number=row[1], cost=row[2])
 
     layout = [
@@ -89,7 +89,7 @@ def drinks():
         line_count = 0
 
         for row in csv_reader:
-            result_string = "{name} phone number {number} cost {cost}"
+            result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
             result_string = result_string.format(name=row[0], number=row[1], cost=row[2])
 
     layout = [
@@ -110,9 +110,17 @@ def drinks():
 
 # defines response adventure
 def adventure():
+    with open("adventures.csv") as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+
+        for row in csv_reader:
+            result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
+            result_string = result_string.format(name=row[0], number=row[1], cost=row[2])
+
     layout = [
         [sg.Text("Adventure!")],
-        [sg.Button("OK")]
+        [sg.Text(result_string)]
     ]
 
     # create the window
@@ -120,9 +128,8 @@ def adventure():
 
     while True:
         event, values = window.read()
-        # End program if user closes window or
-        # presses OK
-        if event == "OK" or sg.WIN_CLOSED:
+        # End program if user closes window
+        if event == sg.WIN_CLOSED:
             break
     window.close()
 
