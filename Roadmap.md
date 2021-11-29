@@ -17,12 +17,12 @@
 - [x] Track progress in roadmap
 
 ## Sprint 3
-- [ ] Continue coding, testing, and refining
-- [ ] Have each option choose a random line in CSV file
-- [ ] Get "Surprise Me!" working properly
-- [ ] Test code
-- [ ] Create PowerPoint slide for project
-- [ ] Upload PPT
+- [x] Continue coding, testing, and refining
+- [x] Have each option choose a random line in CSV file
+- [x] Get "Surprise Me!" working properly
+- [x] Test code
+- [x] Create PowerPoint slide for project
+- [x] Upload PPT
 
 ## Final
 - [ ] Prepare presentation
