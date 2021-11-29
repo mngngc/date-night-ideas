@@ -2,13 +2,16 @@ import sys
 import PySimpleGUI as sg
 import csv
 import random
+import webbrowser
+
+sg.theme('DarkTeal2')
 
 # defines main welcome screen
 def welcome():
     layout = [
         [sg.Text("Welcome to Let's Go Out!", font=("Arial", 25))],
         [sg.Text('The best way to find a date night idea!', font=("Arial", 15))],
-        [sg.Button('Click me to begin!', size=(25))]
+        [sg.Button('Click me to begin!', expand_x=True, expand_y=True, font=("Arial", 15))]
     ]
 
     # create the window
@@ -30,12 +33,12 @@ def welcome():
 def main():
     layout = [
         [sg.Text("Hello! What are you looking to do this evening?", font=("Arial", 15))],
-        [sg.Button("Get Food!"), sg.Button("Have a Drink!")],
-        [sg.Button("Go On An Adventure!"), sg.Button("Surprise Me!")]
+        [sg.Button("Get Food!", expand_x=True, expand_y=True, font=("Arial", 15)), sg.Button("Have a Drink!", expand_x=True, expand_y=True, font=("Arial", 15))],
+        [sg.Button("Go On An Adventure!", expand_x=True, expand_y=True, font=("Arial", 15)), sg.Button("Surprise Me!", expand_x=True, expand_y=True, font=("Arial", 15))]
     ]
 
     # create the window
-    window = sg.Window("Let's Go Out", layout, size=(500,250), auto_size_buttons=True, element_justification='c')
+    window = sg.Window("Let's Go Out", layout, size=(500,250), element_justification='c')
 
     while True:
         event, values = window.read()
@@ -69,12 +72,18 @@ def dinner():
                 r = random.randint(0, index)
                 if r == 0:
                     chosen_row = row
-        result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
-        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
+        result_string = "I have selected {name}!\nThey are located at, {address}\nThey can be reached at, {number}\nLook to spend {cost}\nWebsite: {web}"
+        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2], address=chosen_row[3], web=chosen_row[4])
+        site = chosen_row[4]
+
+    def callback(url):
+        webbrowser.open_new(site)
+
 
     layout = [
-        [sg.Text("Dinner!")],
-        [sg.Text(result_string)]
+        [sg.Text("Dinner!", font=("Arial", 25))],
+        [sg.Text(result_string, font=("Arial", 10))],
+        [sg.Text(site, font=("Arial", 10), tooltip=site, enable_events=True)]
     ]
 
     # create the window
@@ -102,8 +111,8 @@ def drinks():
         result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
         
     layout = [
-        [sg.Text("Drinks!")],
-        [sg.Text(result_string)]
+        [sg.Text("Drinks!", font=("Arial", 25))],
+        [sg.Text(result_string, font=("Arial", 10))]
     ]
 
     # create the window
@@ -132,8 +141,8 @@ def adventure():
         result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
 
     layout = [
-        [sg.Text("Adventure!")],
-        [sg.Text(result_string)]
+        [sg.Text("Adventure!", font=("Arial", 25))],
+        [sg.Text(result_string, font=("Arial", 10))]
     ]
 
     # create the window
@@ -149,9 +158,21 @@ def adventure():
 
 # defines response surprise me
 def surprise():
+    with open("surprise.csv") as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for index, row in enumerate(csv_reader):
+            if index == 0:
+                chosen_row = row
+            else:
+                r = random.randint(0, index)
+                if r == 0:
+                    chosen_row = row
+        result_string = "I have selected {name}!\nThey are located at, {address}\nThey can be reached at, {number}\nLook to spend {cost}\nWebsite: {web}"
+        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2], address=chosen_row[3], web=chosen_row[4])
+
     layout = [
-        [sg.Text("Surprise!")],
-        [sg.Button("OK")]
+        [sg.Text("Surprise!", font=("Arial", 25))],
+        [sg.Text(result_string, font=("Arial", 10))]
     ]
 
     # create the window
@@ -160,8 +181,7 @@ def surprise():
     while True:
         event, values = window.read()
         # End program if user closes window or
-        # presses OK
-        if event == "OK" or sg.WIN_CLOSED:
+        if event == sg.WIN_CLOSED:
             break
     window.close()
 
