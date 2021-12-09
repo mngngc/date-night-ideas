@@ -83,7 +83,7 @@ def dinner():
     layout = [
         [sg.Text("Dinner!", font=("Arial", 25))],
         [sg.Text(result_string, font=("Arial", 10))],
-        [sg.Text(site, font=("Arial", 10), tooltip=site, enable_events=True)]
+        [sg.Button("New Date!", font=("Arial", 15))]
     ]
 
     # create the window
@@ -92,11 +92,14 @@ def dinner():
     while True:
         event, values = window.read()
         # End program if user closes window or
-        if event == sg.WIN_CLOSED:
+        if event == "New Date!":
+            window.close()
+            welcome()
+        elif event == sg.WIN_CLOSED:
             break
     window.close()
 
-# defines response movie
+# defines response drinks
 def drinks():
     with open("bars.csv") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -107,12 +110,13 @@ def drinks():
                 r = random.randint(0, index)
                 if r == 0:
                     chosen_row = row
-        result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
-        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
+        result_string = "I have selected {name}!\nThey are located at, {address}\nThey can be reached at, {number}\nLook to spend {cost}"
+        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2], address=chosen_row[3])
         
     layout = [
         [sg.Text("Drinks!", font=("Arial", 25))],
-        [sg.Text(result_string, font=("Arial", 10))]
+        [sg.Text(result_string, font=("Arial", 10))],
+        [sg.Button("New Date!", font=("Arial", 15))]
     ]
 
     # create the window
@@ -121,8 +125,10 @@ def drinks():
     while True:
         event, values = window.read()
         # End program if user closes window or
-        # presses OK
-        if event == sg.WIN_CLOSED:
+        if event == "New Date!":
+            window.close()
+            welcome()
+        elif event == sg.WIN_CLOSED:
             break
     window.close()
 
@@ -137,12 +143,13 @@ def adventure():
                 r = random.randint(0, index)
                 if r == 0:
                     chosen_row = row
-        result_string = "I have selected {name}!\nThey can be reached at, {number}\nLook to spend {cost}"
-        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
+        result_string = "I have selected {name}!\nThey are located at, {address}\nThey can be reached at, {number}\nLook to spend {cost}"
+        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2], address=chosen_row[3])
 
     layout = [
         [sg.Text("Adventure!", font=("Arial", 25))],
-        [sg.Text(result_string, font=("Arial", 10))]
+        [sg.Text(result_string, font=("Arial", 10))],
+        [sg.Button("New Date!", font=("Arial", 15))]
     ]
 
     # create the window
@@ -150,8 +157,11 @@ def adventure():
 
     while True:
         event, values = window.read()
-        # End program if user closes window
-        if event == sg.WIN_CLOSED:
+        # End program if user closes window or
+        if event == "New Date!":
+            window.close()
+            welcome()
+        elif event == sg.WIN_CLOSED:
             break
     window.close()
 
@@ -167,12 +177,13 @@ def surprise():
                 r = random.randint(0, index)
                 if r == 0:
                     chosen_row = row
-        result_string = "I have selected {name}!\nThey are located at, {address}\nThey can be reached at, {number}\nLook to spend {cost}\nWebsite: {web}"
-        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2], address=chosen_row[3], web=chosen_row[4])
+        result_string = "I have selected {name}!\nThey are located at, {address}\nThey can be reached at, {number}"
+        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2], address=chosen_row[3])
 
     layout = [
         [sg.Text("Surprise!", font=("Arial", 25))],
-        [sg.Text(result_string, font=("Arial", 10))]
+        [sg.Text(result_string, font=("Arial", 10))],
+        [sg.Button("New Date!", font=("Arial", 15))]
     ]
 
     # create the window
@@ -181,7 +192,10 @@ def surprise():
     while True:
         event, values = window.read()
         # End program if user closes window or
-        if event == sg.WIN_CLOSED:
+        if event == "New Date!":
+            window.close()
+            welcome()
+        elif event == sg.WIN_CLOSED:
             break
     window.close()
 
