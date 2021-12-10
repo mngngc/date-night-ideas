@@ -25,6 +25,6 @@
 - [x] Upload PPT
 
 ## Final
-- [ ] Prepare presentation
-- [ ] Record Presentation
-- [ ] Upload Presentation
+- [x] Prepare presentation
+- [x] Record Presentation
+- [x] Upload Presentation
